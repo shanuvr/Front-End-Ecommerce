@@ -16,7 +16,7 @@ export default function Products() {
  
   useEffect(()=>{
       getProducts()
-      console.log("use effect for getproducts");
+      console.log("use effect worked");
       
      
   },[])
