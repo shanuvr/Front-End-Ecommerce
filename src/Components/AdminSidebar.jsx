@@ -1,0 +1,39 @@
+import React from 'react';
+import { HousePlus, PackageSearch, Users, ChartBarStacked,LogOut } from 'lucide-react';
+import { NavLink } from 'react-router-dom';
+
+function AdminSidebar() {
+  const menu = [
+    { icon: <HousePlus size={24} />, label: 'Home', path:"/admin/dashboard"},
+    { icon: <PackageSearch size={24} />, label: 'Products',path:"/admin/products" },
+    { icon: <Users size={24} />, label: 'Users',path:"/admin/users" },
+    { icon: <ChartBarStacked size={24} />, label: 'Categories',path:"/admin/categories" }
+  ];
+
+  return (
+    <div className="h-screen bg-gray-800 text-white w-40 hover:w-64 transition-all duration-300 flex flex-col justify-between ">
+      <div>
+        {menu.map((item, index) => (
+        <NavLink to={item.path}>
+        <div
+          key={index}
+          className="flex items-center gap-4 p-3 rounded-md pl-3 hover:bg-green-600 cursor-pointer transition-colors "
+        >
+          {item.icon}
+          <div className='ml-7'>{item.label}</div>
+         
+        </div>
+        </NavLink>
+        
+        
+      ))}
+      </div>
+      <div className='pb-7'>
+        <LogOut size={28}  className='inline'/>
+        <span>Log Out</span>
+      </div>
+    </div>
+  );
+}
+
+export default AdminSidebar;
