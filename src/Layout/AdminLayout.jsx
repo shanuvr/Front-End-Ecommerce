@@ -1,7 +1,7 @@
 import AdminSidebar from '../Components/AdminSidebar'
 import React from 'react'
 
-export default function ({ children}) {
+export default function AdminLayout ({ children}) {
   return (
     <div className='flex'>
         <AdminSidebar/>

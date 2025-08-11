@@ -13,6 +13,17 @@ export default function Products() {
   const [stock,setStock] = useState("")
   const[des,setDes]=useState("")
   const [img,setImg] = useState(null)
+  const [eitImg,setEditImg] = useState(null)
+  const [editName,setEditName]= useState("")
+  const [editDes,setEditDes]=useState("")
+  const [editPrice,setEditPrice] = useState("")
+  const [editStock,setEditStock] = useState("")
+  const [editCat,setEditCat] = useState("")
+  const [editId,setEditId] = useState("")
+  const [showEdit,setShowEdit] = useState(false)
+
+
+
  
   useEffect(()=>{
       getProducts()
@@ -58,6 +69,32 @@ export default function Products() {
     }
 
    }
+   async function deleteProduct(id) {
+    console.log("fn worked");
+    
+    const proDel =  await api.delete(`/admin/products/${id}`)
+    getProducts()
+    
+   }
+   async function editProduct() {
+    console.log(editId);
+    const dataToset={
+      
+productImage:eitImg,
+productName:editName,
+productCategory:editCat,
+productPrice:editPrice,
+productStock:editStock,
+productDescription:editDes
+    }
+    
+    console.log("submite worked");
+    
+    const edi = await api.put(`/admin/product/${editId}`,dataToset)
+    getProducts()
+    setShowEdit(false)
+    
+   }
 
   return (
     <AdminLayout>
@@ -77,6 +114,7 @@ export default function Products() {
             <th className='py-3 px-4 border-gray-400'>Price</th>
             <th className='py-3 px-4 border-gray-400'>Stock</th>
             <th className='py-3 px-4 border-gray-400'>Category</th>
+            <th className='py-3 px-4 border-gray-400'>Description</th>
             <th className='py-3 px-4 border-gray-400'>Action</th>
           </tr>
         </thead>
@@ -93,9 +131,23 @@ export default function Products() {
           <td className='py-2 px-4 border-gray-100'>{item.productPrice}</td>
           <td className='py-2 px-4 border-gray-100'>{item.productStock}</td>
           <td className='py-2 px-4 border-gray-100'>{item.categoryName}</td>
+          <td className='py-2 px-4 border-gray-100'>{item.productDescription}</td>
           <td className='py-2 px-4 border-gray-100'>
-            <button className='bg-purple-700 text-white rounded-2xl px-3 py-1'>Edit</button>
-            <button className='bg-teal-800 text-white rounded-2xl px-3 py-1'>Delete</button>
+            <button onClick={async ()=>{
+              await getCategories()
+              setShowEdit(true)
+              setEditId(item._id)
+              setEditName(item.productName)
+              setEditDes(item.productDescription)
+              setEditPrice(item.productPrice)
+              setEditImg(`http://localhost:3000/${item.productImage}`)
+              setEditStock(item.productStock)
+              setEditCat(item.categoryName)
+
+            }} className='bg-purple-700 text-white rounded-2xl px-3 py-1'>Edit</button>
+            <button onClick={()=>{
+              console.log("button clicked");
+              deleteProduct(item._id)}} className='bg-teal-800 text-white rounded-2xl px-3 py-1'>Delete</button>
           </td>
         </tr>
             )
@@ -149,6 +201,46 @@ export default function Products() {
           </div>
         )
       }
+      {showEdit&&(
+        <div className='pt-4 flex flex-col absolute top-20 right-20 bg-gray-100 w-[60%] gap-2 items-center-safe bg-p'>
+    
+              <div className='flex flex-col  '>
+                <label>Image</label>
+                <input type="file" name="" id="" onChange={(e)=>{setEditImg(e.target.files[0])}} className= ' border-gray-300 border '  />
+              </div>
+              <div className='flex flex-col gap-2' >
+                <label>Name</label>
+                <input value={editName} onChange={(e)=>{setEditName(e.target.value)}}  className=' border-gray-300 border ' type="text"  />
+              </div>
+              <div className='flex flex-col gap-2'>
+                <label>price</label>
+                <input value={editPrice} onChange={(e)=>{setEditPrice(e.target.value)}}  className=' border-gray-300 border  ' type="number" name="" id=""  />
+              </div>
+              <div className='flex flex-col gap-2'>
+                <label>Description</label>
+                <textarea value={editDes} onChange={(e)=>{setEditDes(e.target.value)}}  className=' border-gray-300 border ' name="" id="" ></textarea>
+              </div>
+              <div className='flex flex-col gap-2' >
+                <label>Category</label>
+              <select >
+                        <option value={editCat}>{editCat}</option>
+                        {cat.map(c => (
+                          <option onChange={(e)=>{setEditCat(e.target.value)}} key={c._id} value={c._id} >{c.name}</option>
+                        ))}
+                      </select>
+
+              </div>
+              <div className='flex flex-col gap-2'>
+                <label >Stock</label>
+                <input value={editStock} onChange={(e)=>{setEditStock(e.target.value)}}  className=' border-gray-300 border ' type="number" name="" id=""  />
+              </div>
+              <div className='flex gap-5 py-7'>
+                <button className=' bg-red-400 px-3 py-2 rounded-2xl hover:scale-105 transition-discrete' onClick={()=>{setShowEdit(false)}}>Close</button>
+                <button onClick={()=>{editProduct()}} className=' bg-green-400 px-3 py-2 rounded-2xl hover:scale-105 transition-discrete' >Submit</button>
+              </div>
+
+          </div>
+      )}
     </AdminLayout>
   )
 }
