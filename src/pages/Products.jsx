@@ -76,25 +76,30 @@ export default function Products() {
     getProducts()
     
    }
-   async function editProduct() {
-    console.log(editId);
-    const dataToset={
-      
-productImage:eitImg,
-productName:editName,
-productCategory:editCat,
-productPrice:editPrice,
-productStock:editStock,
-productDescription:editDes
-    }
-    
-    console.log("submite worked");
-    
-    const edi = await api.put(`/admin/product/${editId}`,dataToset)
-    getProducts()
-    setShowEdit(false)
-    
-   }
+  async function editProduct() {
+  console.log("Edit function worked")
+
+  const formData = new FormData();
+  if (eitImg ) {
+    formData.append('productImage', eitImg);
+  }
+  formData.append('productName', editName);
+  formData.append('productPrice', editPrice);
+  formData.append('productDescription', editDes);
+  formData.append('productCategory', editCat);
+  formData.append('productStock', editStock);
+
+  try {
+    const res = await api.put(`/admin/product/${editId}`, formData, {
+      headers: { "Content-Type": "multipart/form-data" }
+    });
+    console.log("Edit response:", res.data);
+    getProducts();
+    setShowEdit(false);
+  } catch (error) {
+    console.error("Edit product error:", error);
+  }
+}
 
   return (
     <AdminLayout>
@@ -134,7 +139,11 @@ productDescription:editDes
           <td className='py-2 px-4 border-gray-100'>{item.productDescription}</td>
           <td className='py-2 px-4 border-gray-100'>
             <button onClick={async ()=>{
+              console.log("thisssss");
+              
               await getCategories()
+              console.log(item.productCategory);
+              
               setShowEdit(true)
               setEditId(item._id)
               setEditName(item.productName)
@@ -142,7 +151,8 @@ productDescription:editDes
               setEditPrice(item.productPrice)
               setEditImg(`http://localhost:3000/${item.productImage}`)
               setEditStock(item.productStock)
-              setEditCat(item.categoryName)
+              setEditCat(item.productCategory)
+             
 
             }} className='bg-purple-700 text-white rounded-2xl px-3 py-1'>Edit</button>
             <button onClick={()=>{
@@ -222,12 +232,17 @@ productDescription:editDes
               </div>
               <div className='flex flex-col gap-2' >
                 <label>Category</label>
-              <select >
-                        <option value={editCat}>{editCat}</option>
-                        {cat.map(c => (
-                          <option onChange={(e)=>{setEditCat(e.target.value)}} key={c._id} value={c._id} >{c.name}</option>
-                        ))}
-                      </select>
+              <select
+  value={editCat}
+  onChange={(e) => setEditCat(e.target.value)}
+>
+  <option value="">Select Category</option>
+  {cat.map(c => (
+    <option key={c._id} value={c._id}>
+      {c.name}
+    </option>
+  ))}
+</select>
 
               </div>
               <div className='flex flex-col gap-2'>
