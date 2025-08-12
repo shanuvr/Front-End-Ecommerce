@@ -17,6 +17,7 @@ function AdminLogin() {
             const admin = await api.post('/admin/login',dataToSend)
             console.log(admin.data.success);
             if(admin.data.success){
+                 localStorage.setItem('admin' , true)
                 navigate('/admin/dashboard')
             }
             
