@@ -2,9 +2,21 @@ import React, { useState } from 'react'
 import foto from "../assets/fimage.jpg"
 import seprate from "../assets/seprate.png"
 import UserLayout from '../Layout/UserLayout'
+import api from '../api/axios'
 
 function Home() {
-  const[electronics,setElectronics] = useState()
+  const[products,setProducts] = useState([])
+  useState(()=>{
+    getProducts()
+  })
+   async function getProducts() {
+    console.log("get Prodyct fn called");
+    const result =  await api.get('/admin/products')
+    console.log(result.data.products);
+    
+    setProducts(result.data.products);
+  }
+
   return (
     <UserLayout >
        <div className=' bg-[#f2f0f1] w-screen h-[100vh] flex flex-col sm:flex-row justify-around '>
@@ -32,18 +44,26 @@ function Home() {
       <div className=''>
       <img src={seprate} alt="" srcset="" />
       </div>
+        <h1 className=' text-center font-bold text-2xl'>Latest Arrivals</h1>
+      <div className='py-11 flex overflow-x-auto scroll-smooth '>
+        
+        {
+          products.map((ele,ind)=>{
+            return (
+                  <div key={ind} className="flex-shrink  max-w-sm border rounded-lg p-4 text-center shadow-sm  ">
+        <img src={`http://localhost:3000/${ele.productImage}`} className="mx-auto h-40 object-contain" />
+        <h3 className="mt-2 text-lg font-semibold">{ele.productName}</h3>
+        <p className="text-xl font-bold">{ele.productPrice}</p>
+        <button className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+          Add to cart
+        </button>
+      </div>
+            )
+          })
+          
+        }
 
-      <div className='py-11'>
-        <h1 className=' text-center font-bold text-2xl'>Electronics Devices You must Be Intersted in</h1>
-
-         <div className="max-w-sm border rounded-lg p-4 text-center shadow-sm">
-      <img src={foto} className="mx-auto h-40 object-contain" />
-      <h3 className="mt-2 text-lg font-semibold">iphone</h3>
-      <p className="text-xl font-bold">$1999</p>
-      <button className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
-        Add to cart
-      </button>
-    </div>
+        
 
       </div>
 

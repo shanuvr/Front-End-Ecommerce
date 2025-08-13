@@ -31,10 +31,12 @@ export default function Categories() {
       description:des
     }
     const result = api.post('/admin/categories',dataToSend)
+  
     setShowAdd(false)
+    getCategories()
     setName("")
     setDes("")
-    getCategories()
+    
   }
   async function editCategory() {
     const dataToSend = {
