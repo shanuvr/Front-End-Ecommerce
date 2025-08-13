@@ -27,9 +27,7 @@ export default function Products() {
  
   useEffect(()=>{
       getProducts()
-      
-      
-     
+ 
   },[])
   async function getProducts() {
     console.log("get Prodyct fn called");
@@ -62,11 +60,18 @@ export default function Products() {
     })
     
     getProducts()
+     setName("");
+    setPrice("");
+    setDes("");
+    setCatego("");
+    setStock("");
+    setImg(null);
     setshowAddProduct(false)
     }catch(err){
       console.log(err);
       
     }
+   
 
    }
    async function deleteProduct(id) {
@@ -132,7 +137,7 @@ export default function Products() {
           <td className='py-2 px-4 border-gray-100'>
             <img src={`http://localhost:3000/${item.productImage}`} className=' w-20' alt="" srcset="" /></td>
           <td className='py-2 px-4 border-gray-100'>{item.productName
-}</td>
+            }</td>
           <td className='py-2 px-4 border-gray-100'>{item.productPrice}</td>
           <td className='py-2 px-4 border-gray-100'>{item.productStock}</td>
           <td className='py-2 px-4 border-gray-100'>{item.categoryName}</td>

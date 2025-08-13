@@ -7,6 +7,11 @@ import Users from "./pages/Users"
 import AdminLogin from "./pages/AdminLogin"
 import Orders from "./pages/Orders"
 import Protected from "./Components/Protected"
+import Home from "./UserPages/Home"
+import UserLogin from "./Userpages/UserLogin"
+import Register from "./Userpages/Register"
+
+
 
 
 function App() {
@@ -19,6 +24,11 @@ function App() {
     <Route path="/admin/categories" element={<Protected><Categories/></Protected>}/>
     <Route path="/admin/users" element={<Protected><Users/></Protected>}/>
     <Route path="/admin/orders" element={<Protected><Orders/></Protected>}/>
+    <Route path="" element={<Home/>}/>
+    <Route path="/login" element={<UserLogin/>}/>
+    <Route path="/register" element={<Register/>}/>
+    
+   
    </Routes>
   )
 }
