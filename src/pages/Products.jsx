@@ -5,7 +5,7 @@ import api from '../api/axios'
 
 export default function Products() {
   const [products,setProducts] = useState([])
-  const[cat,setCat]=useState([])
+  const[Fcat,setCat]=useState([])
   const [showAddProduct,setshowAddProduct] = useState(false)
   const [name,setName] = useState("")
   const[price,setPrice] = useState("")
@@ -196,7 +196,7 @@ export default function Products() {
               <div className='flex flex-col gap-2' >
                 <label>Category</label>
                 <select value={catego}
-  onChange={(e) => setCatego(e.target.value)}>
+                        onChange={(e) => setCatego(e.target.value)}>
                         <option value="">Select</option>
                         {cat.map(c => (
                           <option key={c._id} value={c._id} >{c.name}</option>

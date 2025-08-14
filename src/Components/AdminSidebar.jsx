@@ -29,7 +29,7 @@ function AdminSidebar() {
   }
 
   return (
-    <div className="h-screen bg-gray-800 text-white w-40 hover:w-64 transition-all duration-300 flex flex-col justify-between ">
+    <div className="h-screen bg-gray-800 text-white w-40 hover:w-64 transition-all duration-300 flex flex-col justify-between sticky ">
       <div>
         {menu.map((item, index) => (
         <NavLink to={item.path}>

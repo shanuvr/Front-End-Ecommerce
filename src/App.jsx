@@ -10,6 +10,9 @@ import Protected from "./Components/Protected"
 import Home from "./UserPages/Home"
 import UserLogin from "./Userpages/UserLogin"
 import Register from "./Userpages/Register"
+import Product from "./Userpages/Product"
+import CartPage from "./Userpages/cart"
+
 
 
 
@@ -27,6 +30,8 @@ function App() {
     <Route path="" element={<Home/>}/>
     <Route path="/login" element={<UserLogin/>}/>
     <Route path="/register" element={<Register/>}/>
+    <Route path="/product/:id" element={<Product/>}/>
+    <Route path="/cart" element={<CartPage/>}/>
     
    
    </Routes>

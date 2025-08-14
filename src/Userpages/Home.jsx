@@ -1,21 +1,26 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState,useRef } from 'react'
 import foto from "../assets/fimage.jpg"
 import seprate from "../assets/seprate.png"
 import UserLayout from '../Layout/UserLayout'
 import api from '../api/axios'
+import { useNavigate } from 'react-router-dom'
 
 function Home() {
+  const navigate = useNavigate()
   const[products,setProducts] = useState([])
-  useState(()=>{
+  const scrollRef = useRef(null)
+
+  useEffect(()=>{
     getProducts()
-  })
+  },[])
    async function getProducts() {
     console.log("get Prodyct fn called");
-    const result =  await api.get('/admin/products')
+    const result =  await api.get('/products')
     console.log(result.data.products);
     
     setProducts(result.data.products);
   }
+ 
 
   return (
     <UserLayout >
@@ -45,12 +50,12 @@ function Home() {
       <img src={seprate} alt="" srcset="" />
       </div>
         <h1 className=' text-center font-bold text-2xl'>Latest Arrivals</h1>
-      <div className='py-11 flex overflow-x-auto scroll-smooth '>
+      <div className='py-11 flex overflow-x-auto scroll-smooth  gap-10'>
         
         {
           products.map((ele,ind)=>{
             return (
-                  <div key={ind} className="flex-shrink  max-w-sm border rounded-lg p-4 text-center shadow-sm  ">
+                  <div key={ind} className=" flex-shrink-0 gap-5  max-w-sm border rounded-lg p-4 text-center shadow-sm o" onClick={()=>{ navigate(`/product/${ele._id}`)}}>
         <img src={`http://localhost:3000/${ele.productImage}`} className="mx-auto h-40 object-contain" />
         <h3 className="mt-2 text-lg font-semibold">{ele.productName}</h3>
         <p className="text-xl font-bold">{ele.productPrice}</p>
