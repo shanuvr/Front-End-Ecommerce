@@ -6,6 +6,7 @@ import UserLayout from "../Layout/UserLayout";
 function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
+  const [quantity,setQuantity] = useState(1)
 
 
   useEffect(() => {
@@ -20,7 +21,12 @@ function Product() {
     getProduct();
   }, [id]);
 
-
+async function handleAddToCart(id) {
+ console.log("Adding to cart:", id); 
+  const cart = await api.post(`/cart/${id}`, { quantity });
+  console.log(cart.data);
+  
+}
   if (!product) {
     return (
       <UserLayout>
@@ -44,9 +50,15 @@ function Product() {
           <h1 className="text-3xl font-bold">{product.productName}</h1>
           <p className="text-gray-600">{product.productDescription}</p>
           <div className="text-2xl font-semibold">
+            <div className="flex flex-col items-center ">
+              <label >Quantity</label>
+              <button onClick={()=>{setQuantity(quantity+1)}}>+</button>
+              <p>{quantity}</p>
+              <button onClick={()=>{setQuantity(quantity>1?quantity-1:1)}}>-</button>
+            </div>
             ${product.productPrice}
           </div>
-          <button className="bg-purple-600 px-6 py-3 rounded-lg text-white hover:bg-blue-700 transition">
+          <button onClick={()=>{handleAddToCart(product._id)}} className="bg-purple-600 px-6 py-3 rounded-lg text-white hover:bg-blue-700 transition">
             Add to Cart
           </button>
         </div>

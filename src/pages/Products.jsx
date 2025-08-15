@@ -5,7 +5,7 @@ import api from '../api/axios'
 
 export default function Products() {
   const [products,setProducts] = useState([])
-  const[Fcat,setCat]=useState([])
+  const[cat,setCat]=useState([])
   const [showAddProduct,setshowAddProduct] = useState(false)
   const [name,setName] = useState("")
   const[price,setPrice] = useState("")

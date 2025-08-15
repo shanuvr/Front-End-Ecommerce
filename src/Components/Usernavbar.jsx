@@ -1,6 +1,6 @@
 import React, { useState } from "react";
-import { NavLink } from "react-router-dom";
-import { Search,ShoppingCartIcon,Tally3,X,UserRoundPen } from "lucide-react";
+import { NavLink,useNavigate } from "react-router-dom";
+import { Search,ShoppingCartIcon,Tally3,X,UserRoundPen,PowerOff  } from "lucide-react";
 
 function UserNavbar() {
   const [isOpen, setIsOpen] = useState(false);
@@ -30,6 +30,10 @@ function UserNavbar() {
               <ShoppingCartIcon size={20} /></NavLink>
 
              <li><NavLink to="/login">Login</NavLink></li> 
+             <li><button onClick={()=>{
+              localStorage.removeItem('user')
+              
+             }}> <PowerOff/> </button></li> 
               
             
         </ul>

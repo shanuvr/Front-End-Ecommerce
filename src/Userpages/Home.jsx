@@ -20,6 +20,11 @@ function Home() {
     
     setProducts(result.data.products);
   }
+
+  function handleAddtoCart(e){
+    e.stopPropagation();
+     alert("heelo")
+  }
  
 
   return (
@@ -55,11 +60,11 @@ function Home() {
         {
           products.map((ele,ind)=>{
             return (
-                  <div key={ind} className=" flex-shrink-0 gap-5  max-w-sm border rounded-lg p-4 text-center shadow-sm o" onClick={()=>{ navigate(`/product/${ele._id}`)}}>
+                  <div key={ind} className=" hover:scale-105 transition-all flex-shrink-0 gap-5 max-w-[200px]  min-w-[200px]  rounded-lg p-4 text-center shadow-[8px_3px_10px_5px_rgba(0,_0,_0,_0.1)] o" onClick={()=>{ navigate(`/product/${ele._id}`)}}>
         <img src={`http://localhost:3000/${ele.productImage}`} className="mx-auto h-40 object-contain" />
         <h3 className="mt-2 text-lg font-semibold">{ele.productName}</h3>
-        <p className="text-xl font-bold">{ele.productPrice}</p>
-        <button className="mt-3 bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700">
+        <p className="text-xl font-bold">${ele.productPrice}</p>
+        <button onClick={(e)=>{ handleAddtoCart(e)}} className="mt-3 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600 hover:scale-95 transition-all hover:text-shadow-black">
           Add to cart
         </button>
       </div>
