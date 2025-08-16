@@ -2,8 +2,6 @@ import React, { useEffect, useState } from "react";
 import UserLayout from "../Layout/UserLayout";
 import { useNavigate } from "react-router-dom";
 import api from "../api/axios";
-import { DumbbellIcon } from "lucide-react";
-
 export default function CartPage() {
     const user = localStorage.getItem('user')
     const [carts,setCarts] =useState([])
@@ -16,10 +14,12 @@ export default function CartPage() {
     },[])
     async function getCart() {
       const user = await api.get('/cart')
-      // console.log(user.data.cart[0]);
-      setCarts(user.data.cart[0])
-      setCartItems(user.data.cart[0].cartitems)
-      // console.log(carts);
+      if (user.data.cart && user.data.cart.length > 0) {
+        setCarts(user.data.cart[0]);
+        setCartItems(user.data.cart[0].cartitems);
+    } else {
+        setCartItems([]);
+    }
       
 
     }
@@ -48,13 +48,13 @@ useEffect(() => {
       <div className="md:col-span-2">
         <h1 className="text-2xl font-bold mb-4">Shopping Cart</h1>
 
-        {
-          cartitems.map((ele,ind)=>{
-            return(
-                <div className="flex items-center border-b py-4">
+        {cartitems.length > 0 ? (
+    cartitems.map((ele, ind) => {
+      return (
+        <div key={ind} className="flex items-center border-b py-4">
           <img
             src={`http://localhost:3000/${ele.image}`}
-            alt="product"
+            alt={ele.name}
             className="w-24 h-24 object-cover"
           />
           <div className="ml-4 flex-1">
@@ -64,21 +64,26 @@ useEffect(() => {
             <p className="font-semibold">Price {ele.price}</p>
             <p className="font-semibold"> Total {ele.subtotal}</p>
           </div>
-          <button onClick={()=>{handleDelete(ele.productId)}} className="ml-4 text-gray-500">X</button>
+          <button
+            onClick={() => {
+              handleDelete(ele.productId);
+            }}
+            className="ml-4 text-gray-500"
+          >
+            X
+          </button>
         </div>
-            )
-          })
-        }
-           
-            
-
-       
-
-
+      );
+    })
+  ) : (
+    <div className="text-center py-10">
+      <p className="text-xl text-gray-500">Your cart is empty </p>
+    </div>
+  )}
       </div>
 
-
-      <div className="border p-4 rounded">
+{
+  cartitems.length > 0 ?(<div className="border p-4 rounded">
         <h2 className="text-lg font-semibold mb-4">Order summary</h2>
        
         <div className="flex justify-between py-1">
@@ -96,7 +101,11 @@ useEffect(() => {
         <button onClick={()=>{handleOrder()}} className="w-full bg-purple-600 text-white py-2 rounded mt-4">
           Checkout
         </button>
-      </div>
+      </div>):(
+        <button className=" px-2 py-2 bg-cyan-800 text-white rounded-4xl" onClick={()=>{}}>Vew Orders</button>
+      )
+}
+      
     </div>
       ) : (
        <div className=" w-screen h-screen flex flex-col justify-center items-center gap-4">
