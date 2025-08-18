@@ -42,6 +42,19 @@ useEffect(() => {
 
     
   }
+  async function handleqty(productId,qty) {
+    
+    console.log(productId);
+    console.log(qty);
+     if (qty < 1) return; 
+  try {
+    await api.put(`/cart/${productId}`, { quantity: qty });
+    getCart(); 
+  } catch (err) {
+    console.error("Failed to update quantity", err);
+  }
+    
+  }
  
   return (
     <UserLayout>
@@ -63,6 +76,10 @@ useEffect(() => {
             <h2 className="font-semibold">Product name: {ele.name}</h2>
             <p className="text-gray-500">{ele.description}</p>
             <p className="text-gray-500"> Quantity {ele.quantity}</p>
+
+            <button className=" bg-gray-500 text-white rounded-4xl px-2 py-2 hover:scale-95 m-4" onClick={()=>{handleqty(ele.productId,ele.quantity+1)}}>+</button>
+            <button className=" bg-gray-500 text-white rounded-4xl px-2 py-2 hover:scale-95 m-4" onClick={()=>{handleqty(ele.productId,ele.quantity-1)}}>-</button>
+
             <p className="font-semibold">Price {ele.price}</p>
             <p className="font-semibold"> Total {ele.subtotal}</p>
           </div>

@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   Search,
   ShoppingCartIcon,
@@ -11,6 +12,7 @@ import {
 import api from "../api/axios";
 
 function UserNavbar() {
+  const navigate = useNavigate()
   const [isOpen, setIsOpen] = useState(false);
   const [session, setSession] = useState(null);
   const [searchTerm, setSearchTerm] = useState("");
@@ -150,7 +152,7 @@ const [results, setResults] = useState([]);
         </ul>
       )}
      {results.length > 0 && (
-  <div className="bg-white shadow-md rounded-md mt-2 p-2 absolute left-1/2 transform -translate-x-1/2 w-80 max-h-64 overflow-y-auto z-50">
+  <div className="bg-white shadow-md rounded-md mt-">
     
    
     <div className="flex justify-end">
@@ -163,8 +165,8 @@ const [results, setResults] = useState([]);
     </div>
 
     {results.length > 0 && (
-  <div className="bg-white shadow-md rounded-md mt-2 p-2 absolute left-1/2 transform -translate-x-1/2 w-80 max-h-64 overflow-y-auto z-50">
-    <div className="flex justify-end">
+  <div className="bg-white shadow-md rounded-md mt-2 p-3 absolute left-1/2 transform -translate-x-1/2 w-96 max-h-80 overflow-y-auto z-50">
+    <div className="flex justify-end mb-2">
       <button 
         onClick={() => setResults([])} 
         className="text-gray-500 hover:text-black"
@@ -175,16 +177,18 @@ const [results, setResults] = useState([]);
 
     {results.map((item) => (
       <div 
+        onClick={()=>{navigate(`/product/${item._id}`)}}
         key={item._id} 
-        className="p-2 border-b last:border-none hover:bg-gray-100 cursor-pointer"
+        className="p-3 border-b last:border-none hover:bg-gray-100 cursor-pointer"
       >
-        <p className="font-medium">{item.productName}</p>
-        <p className="text-sm text-gray-500">{item.productDescription}</p>
-        <p className="text-sm font-semibold">₹{item.productPrice}</p>
+        <img src={`http://localhost:3000/${item.productImage}`} alt="" />
+        <p className="font-semibold text-gray-900">{item.productName}</p>
+        <p className="text-sm font-bold text-green-700">₹{item.productPrice}</p>
       </div>
     ))}
   </div>
 )}
+
   </div>
 )}
 
