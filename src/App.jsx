@@ -12,6 +12,8 @@ import UserLogin from "./Userpages/UserLogin"
 import Register from "./Userpages/Register"
 import Product from "./Userpages/Product"
 import CartPage from "./Userpages/cart"
+import Order from "./Userpages/Order"
+import User from "./Userpages/User"
 
 
 
@@ -32,6 +34,8 @@ function App() {
     <Route path="/register" element={<Register/>}/>
     <Route path="/product/:id" element={<Product/>}/>
     <Route path="/cart" element={<CartPage/>}/>
+    <Route path="/orders" element={<Order/>}/>
+    <Route path="/profile" element={<User/>}/>
     
    
    </Routes>

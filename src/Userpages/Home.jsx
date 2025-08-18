@@ -64,8 +64,8 @@ function Home() {
         <img src={`http://localhost:3000/${ele.productImage}`} className="mx-auto h-40 object-contain" />
         <h3 className="mt-2 text-lg font-semibold">{ele.productName}</h3>
         <p className="text-xl font-bold">${ele.productPrice}</p>
-        <button onClick={(e)=>{ handleAddtoCart(e)}} className="mt-3 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600 hover:scale-95 transition-all hover:text-shadow-black">
-          Add to cart
+        <button onClick={()=>{ navigate(`/product/${ele._id}`)}} className="mt-3 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600 hover:scale-95 transition-all hover:text-shadow-black">
+          show More
         </button>
       </div>
             )

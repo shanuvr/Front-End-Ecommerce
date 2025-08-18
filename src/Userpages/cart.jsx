@@ -6,6 +6,7 @@ export default function CartPage() {
     const user = localStorage.getItem('user')
     const [carts,setCarts] =useState([])
     const [cartitems,setCartItems]=useState([])
+     const [qty,setQty] = useState("")
     const navigate = useNavigate()
     useEffect(()=>{
         
@@ -41,6 +42,7 @@ useEffect(() => {
 
     
   }
+ 
   return (
     <UserLayout>
         {user ? (
@@ -98,11 +100,11 @@ useEffect(() => {
           <span>Order total</span>
           <span>{carts.total}</span>
         </div>
-        <button onClick={()=>{handleOrder()}} className="w-full bg-purple-600 text-white py-2 rounded mt-4">
+        <button onClick={()=>{handleOrder();window.location.reload();}} className="w-full bg-purple-600 text-white py-2 rounded mt-4">
           Checkout
         </button>
       </div>):(
-        <button className=" px-2 py-2 bg-cyan-800 text-white rounded-4xl" onClick={()=>{}}>Vew Orders</button>
+        <button className=" px-2 py-2 bg-cyan-800 text-white rounded-4xl" onClick={()=>{navigate('/orders')}}>Vew Orders</button>
       )
 }
       
