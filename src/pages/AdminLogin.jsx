@@ -28,7 +28,6 @@ function AdminLogin() {
     }
   return (
     <div className='h-screen w-screen flex justify-center items-center px-4'>
-        
         <div className='flex flex-col gap-3 bg-white rounded-2xl w-full max-w-md p-6 sm:p-8 space-y-6 shadow-md justify-center'>
             {err && <p className="text-red-500 px-[10%]">{err}</p>}
             <div className='flex flex-col px-[10%]'>

@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from 'react'
 import api from '../api/axios'
 import UserLayout from '../Layout/UserLayout'
+import { useNavigate } from 'react-router-dom'
 
 function User() {
+  const navigate = useNavigate()
     const [user,SetUser] = useState("")
     const [name,setName] = useState("")
     const [email,setEmail] = useState("")
@@ -71,6 +73,7 @@ function User() {
     }} className="mt-4 w-full py-2 bg-purple-600 hover:bg-purple-700 text-white font-medium rounded-xl transition">
       Edit Profile
     </button>
+    <button className='mt-4 w-full py-2 bg-blue-400 hover:bg-blue-500 text-white font-medium rounded-xl transition' onClick={()=>{navigate('/orders')}} >Order History</button>
   </div>
  
     {show&&(
