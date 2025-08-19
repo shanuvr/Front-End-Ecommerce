@@ -1,10 +1,11 @@
 import React from 'react'
 import AdminLayout from '../Layout/AdminLayout'
+import Piechart from '../Components/Piechart'
 
 function AdminDashboard() {
   return (
     <AdminLayout>
-      <h1>Heloo</h1>
+      <Piechart/>
     </AdminLayout>
   )
 }

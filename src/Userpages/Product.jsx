@@ -7,6 +7,7 @@ function Product() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity,setQuantity] = useState(1)
+console.log(id);
 
 
   useEffect(() => {
