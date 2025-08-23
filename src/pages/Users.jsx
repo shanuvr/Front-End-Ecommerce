@@ -17,6 +17,17 @@ export default function Users() {
     setUsers(user.data)
     
   }
+  async function toggleUserStatus(id, newStatus) {
+    console.log(id,newStatus);
+    
+  try {
+    await api.put(`/admin/user/${id}`, { stat:newStatus });
+    getUsers(); 
+    getUsers();
+  } catch (error) {
+    console.error("Error updating user status:", error);
+  }
+}
   return (
     <AdminLayout>
       <table class="min-w-full border-collapse block md:table">
@@ -26,6 +37,7 @@ export default function Users() {
       <th class="p-2 text-left font-medium md:border md:border-gray-200 block md:table-cell">Profile Picture</th>
       <th class="p-2 text-left font-medium md:border md:border-gray-200 block md:table-cell">Name</th>
       <th class="p-2 text-left font-medium md:border md:border-gray-200 block md:table-cell">Email</th>
+      <th class="p-2 text-left font-medium md:border md:border-gray-200 block md:table-cell">IsActive</th>
       
     </tr>
   </thead>
@@ -40,6 +52,15 @@ export default function Users() {
       </td>
       <td class="p-2 md:border md:border-gray-200 block md:table-cell"> {ele.name}</td>
       <td class="p-2 md:border md:border-gray-200 block md:table-cell">{ele.email}</td>
+      <td class="p-2 md:border md:border-gray-200 block md:table-cell">
+          <button
+                  onClick={() => toggleUserStatus(ele._id, !ele.isActive)}
+                  className={`px-3 py-1 rounded text-white ${ele.isActive ? "bg-green-500" : "bg-red-500"}`}
+                >
+                  {ele.isActive ? "Active" : "Inactive"}
+                </button>
+      </td>
+
       
     </tr>
 

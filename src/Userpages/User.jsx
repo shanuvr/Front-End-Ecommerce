@@ -77,15 +77,70 @@ function User() {
   </div>
  
     {show&&(
-        <div>
-            <input type="file" className='border' onChange={(e)=>{setImg(e.target.files[0])}}  />
-            <input type="text"  className='border'  value={name} onChange={(e)=>{setName(e.target.value)}}/>
-            <input type="text" className='border'  value={email} onChange={(e)=>{setEmail(e.target.value)}} />
-            <input type="text" className='border' onChange={(e)=>{setPass(e.target.value)}} />
-            <button onClick={()=>{setShow(false)}}>Close</button>
-            <button onClick={editUser}>Submit</button>
+        <div className="fixed inset-0 flex items-center justify-center bg-transparent backdrop-blur-2xl">
+  <div className="bg-white rounded-2xl shadow-xl w-full max-w-md p-6 space-y-4">
+    <h2 className="text-xl font-semibold text-gray-800 text-center">Edit User</h2>
 
-        </div>
+  
+    <div>
+      <label className="block text-sm font-medium text-gray-600 mb-1">Profile Picture</label>
+      <input 
+        type="file" 
+        className="block w-full text-sm text-gray-600 border border-gray-300 rounded-lg cursor-pointer bg-gray-50 focus:outline-none focus:ring-2 focus:ring-blue-500"
+        onChange={(e)=> setImg(e.target.files[0])}  
+      />
+    </div>
+
+  
+    <div>
+      <label className="block text-sm font-medium text-gray-600 mb-1">Name</label>
+      <input 
+        type="text"  
+        className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        value={name} 
+        onChange={(e)=> setName(e.target.value)}
+      />
+    </div>
+
+   
+    <div>
+      <label className="block text-sm font-medium text-gray-600 mb-1">Email</label>
+      <input 
+        type="text"  
+        className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        value={email} 
+        onChange={(e)=> setEmail(e.target.value)}
+      />
+    </div>
+
+  
+    <div>
+      <label className="block text-sm font-medium text-gray-600 mb-1">Password</label>
+      <input 
+        type="password"  
+        className="w-full px-3 py-2 border rounded-lg focus:ring-2 focus:ring-blue-500 focus:outline-none"
+        onChange={(e)=> setPass(e.target.value)}
+      />
+    </div>
+
+   
+    <div className="flex justify-end space-x-3 pt-2">
+      <button 
+        onClick={()=> setShow(false)} 
+        className="px-4 py-2 rounded-lg bg-gray-200 text-gray-700 hover:bg-gray-300 transition"
+      >
+        Close
+      </button>
+      <button 
+        onClick={editUser} 
+        className="px-4 py-2 rounded-lg bg-blue-600 text-white hover:bg-blue-700 transition"
+      >
+        Submit
+      </button>
+    </div>
+  </div>
+</div>
+
     )}
  
 </div>

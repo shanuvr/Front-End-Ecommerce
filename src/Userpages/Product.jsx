@@ -1,9 +1,10 @@
 import React, { useEffect, useState } from "react";
 import api from "../api/axios";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import UserLayout from "../Layout/UserLayout"; 
 
 function Product() {
+  const navigate = useNavigate()
   const { id } = useParams();
   const [product, setProduct] = useState(null);
   const [quantity,setQuantity] = useState(1)
@@ -59,7 +60,7 @@ async function handleAddToCart(id) {
             </div>
             ${product.productPrice}
           </div>
-          <button onClick={()=>{handleAddToCart(product._id)}} className="bg-purple-600 px-6 py-3 rounded-lg text-white hover:bg-blue-700 transition">
+          <button onClick={()=>{handleAddToCart(product._id);navigate('/cart')}} className="bg-purple-600 px-6 py-3 rounded-lg text-white hover:bg-blue-700 transition">
             Add to Cart
           </button>
         </div>

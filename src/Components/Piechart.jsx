@@ -22,13 +22,13 @@ function Piechart() {
         datasets:[
             {
                 data:piechart.map((ele)=>ele.total),
-                 backgroundColor:["red","blue","green","yellow","violet","purple"]
+                 backgroundColor:["red","black","blue","green","yellow","violet","purple"]
             }
         ]
     }
   return (
-    <div>
-        <Pie data  = {chartData}/>
+    <div className='w-md'>
+        <Pie  data  = {chartData} />
     </div>
   )
 }

@@ -74,11 +74,7 @@ const [results, setResults] = useState([]);
           <li>
             <NavLink to="/">Home</NavLink>
           </li>
-          <li>
-            <NavLink to="/profile">
-              <UserRoundPen />
-            </NavLink>
-          </li>
+          
           <li>
             <NavLink
               to="/cart"
@@ -101,6 +97,11 @@ const [results, setResults] = useState([]);
                     <LogOutIcon size={16} /> Logout
                   </button>
                 </li>
+                <li>
+            <NavLink to="/profile">
+              <UserRoundPen />
+            </NavLink>
+          </li>
               </>
             ) : (
               <li>

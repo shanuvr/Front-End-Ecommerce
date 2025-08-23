@@ -160,9 +160,16 @@ export default function Products() {
              
 
             }} className='bg-purple-700 text-white rounded-2xl px-3 py-1'>Edit</button>
-            <button onClick={()=>{
-              console.log("button clicked");
-              deleteProduct(item._id)}} className='bg-teal-800 text-white rounded-2xl px-3 py-1'>Delete</button>
+           <button
+  onClick={() => {
+    if (window.confirm("Are you sure you want to delete this product?")) {
+      deleteProduct(item._id);
+    }
+  }}
+  className="bg-teal-800 text-white rounded-2xl px-3 py-1"
+>
+  Delete
+</button>
           </td>
         </tr>
             )

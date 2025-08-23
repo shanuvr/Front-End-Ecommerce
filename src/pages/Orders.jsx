@@ -81,9 +81,15 @@ function Orders() {
       <td className="px-6 py-4">{ele.total}</td>
       <td className="px-6 py-4">{ele.deliveryStatus}</td>
       <td>
-        <button onClick={()=>{
-            setOrderid(ele._id)
-            setShow(true)}}>Change</button>
+        <button 
+  disabled={ele.deliveryStatus === "delivered"} 
+  onClick={() => {
+    setOrderid(ele._id)
+    setShow(true)
+  }}
+>
+  Change
+</button>
       </td>
     </tr>
   ))}
