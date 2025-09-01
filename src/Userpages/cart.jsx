@@ -58,7 +58,7 @@ export default function CartPage() {
                 return (
                   <div key={ind} className="flex items-center border-b py-4">
                     <img
-                      src={`http://localhost:3000/${ele.image}`}
+                      src={`${api.defaults.baseURL}${ele.image}`}
                       alt={ele.name}
                       className="w-24 h-24 object-cover"
                     />

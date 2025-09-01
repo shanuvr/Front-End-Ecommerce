@@ -49,7 +49,7 @@ function User() {
 
     <div className="flex justify-center mb-4">
       <img
-        src={`http://localhost:3000/${user.profilePicture}`}
+        src={`${api.defaults.baseURL}${user.profilePicture}`}
         alt="profile"
         className="w-28 h-28 rounded-full object-cover border-4"
       />
