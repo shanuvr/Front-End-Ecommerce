@@ -1,5 +1,5 @@
 import React from 'react'
-import UserNavbar from '../Components/UserNavbar'
+import UserNavbar from '../Components/UserNavbar.jsx'
 
 
 function UserLayout({children}) {
