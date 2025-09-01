@@ -1,5 +1,6 @@
 import React from 'react'
 import UserNavbar from '../Components/UserNavbar'
+import Footer from '../Components/Footer'
 
 function UserLayout({children}) {
   return (

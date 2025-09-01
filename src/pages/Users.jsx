@@ -23,7 +23,6 @@ export default function Users() {
   try {
     await api.put(`/admin/user/${id}`, { stat:newStatus });
     getUsers(); 
-    getUsers();
   } catch (error) {
     console.error("Error updating user status:", error);
   }
@@ -63,6 +62,8 @@ export default function Users() {
 
       
     </tr>
+
+    
 
         )
       })
