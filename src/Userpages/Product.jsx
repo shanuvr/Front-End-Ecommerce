@@ -43,7 +43,7 @@ async function handleAddToCart(id) {
         <div className="flex-1 flex justify-center">
           <img
             className="w-full max-w-md h-[400px] object-contain rounded-lg shadow"
-            src={`http://localhost:3000/${product.productImage}`}
+            src={`${api.defaults.baseURL}${product.productImage}`}
             alt={product.productName}
           />
         </div>

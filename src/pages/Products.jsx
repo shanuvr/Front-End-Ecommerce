@@ -135,7 +135,7 @@ export default function Products() {
                 <tr key={ind} className='hover:bg-grey-500 cursor-pointer'>
           <td className='py-2 px-4 border-gray-100'>{ind+1}</td>
           <td className='py-2 px-4 border-gray-100'>
-            <img src={`${api.defaults.baseURL}${ele.productImage}`} className=' w-20' alt="" srcset="" /></td>
+            <img src={`${api.defaults.baseURL}${item.productImage}`} className=' w-20' alt="" srcset="" /></td>
           <td className='py-2 px-4 border-gray-100'>{item.productName
             }</td>
           <td className='py-2 px-4 border-gray-100'>{item.productPrice}</td>
@@ -154,7 +154,7 @@ export default function Products() {
               setEditName(item.productName)
               setEditDes(item.productDescription)
               setEditPrice(item.productPrice)
-              setEditImg(`${api.defaults.baseURL}${ele.productImage}`)
+              setEditImg(`${api.defaults.baseURL}${item.productImage}`)
               setEditStock(item.productStock)
               setEditCat(item.productCategory)
              
