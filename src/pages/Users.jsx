@@ -47,7 +47,7 @@ export default function Users() {
              <tr class="bg-gray-100 border border-gray-200 md:border-none block md:table-row hover:bg-gray-500">
       <td class="p-2 md:border md:border-gray-200 block md:table-cell">{ind+1}</td>
       <td class="p-2 md:border md:border-gray-200 block md:table-cell">
-        <img src={`http://localhost:3000/${ele.profilePicture}`} className='w-[80px]' alt=""  />
+        <img src={`${api.defaults.baseURL}${ele.profilePicture}`} className='w-[80px]' alt=""  />
       </td>
       <td class="p-2 md:border md:border-gray-200 block md:table-cell"> {ele.name}</td>
       <td class="p-2 md:border md:border-gray-200 block md:table-cell">{ele.email}</td>
