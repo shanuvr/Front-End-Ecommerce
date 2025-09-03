@@ -131,6 +131,7 @@ export default function Products() {
       <tbody className='text-center'>
         {
           products.map((item,ind)=>{
+            
             return (
                 <tr key={ind} className='hover:bg-grey-500 cursor-pointer'>
           <td className='py-2 px-4 border-gray-100'>{ind+1}</td>
@@ -267,7 +268,11 @@ export default function Products() {
               </div>
 
           </div>
+          
       )}
+      <div>
+        
+      </div>
     </AdminLayout>
   )
 }
