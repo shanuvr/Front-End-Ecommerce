@@ -272,6 +272,7 @@ export default function Products() {
       )}
       <div>
         <h1>data</h1>
+        <p>ptag</p>
       </div>
     </AdminLayout>
   )
