@@ -271,7 +271,7 @@ export default function Products() {
           
       )}
       <div>
-        <h1>d</h1>
+        
      
        
       </div>
