@@ -103,7 +103,7 @@ function Home() {
               }}
             >
               <img
-                src={`${api.defaults.baseURL}/${ele.productImage}`}
+                src={`http://43.204.103.238:3000/${items.productImage.replace("api/", "")}`}
                 className="mx-auto h-40 object-contain"
               />
               <h3 className="mt-2 text-lg font-semibold">{ele.productName}</h3>
