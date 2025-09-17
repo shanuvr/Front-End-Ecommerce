@@ -103,7 +103,7 @@ function Home() {
               }}
             >
               <img
-                src={`${api.defaults.baseURL}/${items.productImage}`}
+                src={`${api.defaults.baseURL}${items.productImage}`}
                 className="mx-auto h-40 object-contain"
               />
               <h3 className="mt-2 text-lg font-semibold">{ele.productName}</h3>
@@ -144,7 +144,7 @@ function Home() {
           fproduct.map((items,ind)=>{
             return(
                  <div onClick={()=>{navigate(`/product/${items._id}`)}} className=" hover:scale-105 transition-all flex-shrink-0 gap-5 max-w-[200px]  min-w-[200px]  rounded-lg p-4 text-center shadow-[8px_3px_10px_5px_rgba(0,_0,_0,_0.1)] o">
-          <img src={`${api.defaults.baseURL}/${items.productImage}`} className="mx-auto h-40 object-contain" />
+          <img src={`${api.defaults.baseURL}${items.productImage}`} className="mx-auto h-40 object-contain" />
           <h3 className="mt-2 text-lg font-semibold">{items.productName}</h3>
           <p className="text-xl font-bold">{items.productPrice}</p>
           <button className="mt-3 bg-gray-800 text-white px-4 py-2 rounded hover:bg-gray-600 hover:scale-95 transition-all hover:text-shadow-black">
