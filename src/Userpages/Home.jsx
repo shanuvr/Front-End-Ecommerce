@@ -103,7 +103,7 @@ function Home() {
               }}
             >
               <img
-                src={`${api.defaults.baseURL}${items.productImage}`}
+                src={`${api.defaults.baseURL}${ele.productImage}`}
                 className="mx-auto h-40 object-contain"
               />
               <h3 className="mt-2 text-lg font-semibold">{ele.productName}</h3>
